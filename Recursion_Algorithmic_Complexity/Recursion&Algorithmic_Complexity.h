@@ -23,7 +23,7 @@ class discs
         int get_num_discs() const;
 };
 
-class Hanoi: public discs{
+class Hanoi{
     private:
         int rod0[20] = {0};
         int rod1[20] = {0};
@@ -49,14 +49,25 @@ discs::discs(int num){
     }
 }
 
-// get the disc with desired index
+// get the disc with desired index (diameter = index*dia_inc + 1) -> UNUSED
 int discs::get_discs(int indx) const{
     return disc_arr[indx];
 }
 
-// get the number of discs
+// get the number of discs -> UNUSED
 int discs::get_num_discs() const{
     return num_of_discs;
+}
+
+// get index of the last nonzero term of an array
+int nonzero_index(int* arr)
+{
+    int arr_size = 20;
+	for(int i = arr_size-1; i>=0 ; i--)
+	{
+		if(arr[i] != 0)
+			return i;
+	}
 }
 
 /////////////// functions for Hanoi class ///////////////
@@ -106,20 +117,15 @@ void Hanoi::move(int from, int to){
     }
 
     if (available == 1){
-    // the move part is realized ????
+    // the move part is realized
+        if (get_last_nonzero_index(to)+1 != 20){
+            get_rods(to)[get_last_nonzero_index(to)+1] = get_rods(from)[get_last_nonzero_index(from)];
+            get_rods(from)[get_last_nonzero_index(from)] = 0;
+            /* get_rods(from)[get_last_nonzero_index(from)] gives the diameter of a disc,
+               discs are called by their diameter values in my case */
+            cout << "Disc " << get_rods(from)[get_last_nonzero_index(from)] << "is moved from Rod " << from << "to Rod " << to << endl;
+        }
     }
-
-}
-
-// get index of the last nonzero term of an array
-int nonzero_index(int arr)
-{
-    int arr_size = 20;
-	for(int i = arr_size-1; i>=0 ; i--)
-	{
-		if(arr[i] != 0)
-			return i;
-	}
 }
 
 // be stacked by increasing diameter
