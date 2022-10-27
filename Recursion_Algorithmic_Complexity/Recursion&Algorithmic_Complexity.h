@@ -1,13 +1,18 @@
 #include <iostream>
 #include <cstdlib>
+#include <math.h>
 
 using namespace std;
+int dia_inc = 2;
+int step = 1;
 
 // TRY TO MAKE DISCS AS PARENT OF HANOI OR VICE VERSA
 
 /* class to model discs with varying diameters,
    an increase of 2 units is used starting from 1
    (arrangeable, private) */
+
+/*
 class discs
 {
     private:
@@ -24,42 +29,55 @@ class discs
         // get the number of disc
         int get_num_discs() const;
 };
+*/
+
+class disc
+{
+    private:
+        // diameter of the disc
+        int diameter;
+
+    public:
+        // the constructor for the class
+        disc(int diam = 1);
+        // get the diameter of the disc
+        int get_diameter() const;
+        // get the number of disc
+        void set_diameter(int diam);
+};
 
 class Hanoi{
     private:
         int rod0[20] = {0};
         int rod1[20] = {0};
         int rod2[20] = {0};
-        int num_of_discs;
-        discs Discs;
-        // discs Disc(); // ??
+        int num_discs;
+        disc Discs[];
 
     public:
         // the constructor for the class to initialize the game
         Hanoi(int num);
         int * get_rods(int rod_index);
-        int get_last_nonzero_index(int rod_index);
+        int get_last_nonzero_index(int rod_index) const;
+        int get_num_of_discs() const;
         void move(int from, int to);
 
 };
 
-/////////////// functions for discs class ///////////////
-// set the discs using diameters
-discs::discs(int num){
-    num_of_discs = num;
-    for(int i = 0; i<num; i++){
-        disc_arr[i] = i*dia_inc + 1;
-    }
+/////////////// functions for disc class ///////////////
+// set the discs using diameters, constructor for the class
+disc::disc(int diam){
+    diameter = diam;
 }
 
-// get the disc with desired index (diameter = index*dia_inc + 1) -> UNUSED
-int discs::get_discs(int indx) const{
-    return disc_arr[indx];
+// get the diameter of the disc
+int disc::get_diameter() const{
+    return diameter;
 }
 
-// get the number of discs -> UNUSED
-int discs::get_num_discs() const{
-    return num_of_discs;
+// set the diameter of the disc (if required)
+void disc::set_diameter(int diam){
+    diameter = diam;
 }
 
 /////////////// an independent function ///////////////
@@ -71,13 +89,23 @@ int nonzero_index(int* arr)
 	{
 		if(arr[i] != 0)
 			return i;
+        else
+            return -1;
 	}
 }
 
 /////////////// functions for Hanoi class ///////////////
-// the constructor for Hanoi class ????
+// the constructor for Hanoi class
 Hanoi::Hanoi(int num_of_discs){
-    //???
+    num_discs = num_of_discs;
+    // create the discs with increase of two, store at an array
+    for (int i = 0; i<num_of_discs; i++){
+        disc temp(dia_inc*i + 1);
+        Discs[i] = temp;
+        /* accumulate at them at rod0 using diameters
+           from small to large */
+        rod0[num_of_discs - i] = Discs[i].get_diameter();
+    }
 }
 
 // return the rod arrays as pointers
@@ -92,8 +120,12 @@ int * Hanoi::get_rods(int rod_index){
 
 /* get the index of the last disc with nonzero diameter
    for the rod with desired index */
-int Hanoi::get_last_nonzero_index(int rod_index){
+int Hanoi::get_last_nonzero_index(int rod_index) const{
     return nonzero_index(get_rods(rod_index));
+}
+
+int Hanoi::get_num_of_discs() const{
+    return num_discs;
 }
 
 void Hanoi::move(int from, int to){
@@ -121,7 +153,7 @@ void Hanoi::move(int from, int to){
     }
 
     if (available == 1){
-    // the move part is realized
+    //  the move part is realized
         if (get_last_nonzero_index(to)+1 != 20){
             get_rods(to)[get_last_nonzero_index(to)+1] = get_rods(from)[get_last_nonzero_index(from)];
             get_rods(from)[get_last_nonzero_index(from)] = 0;
@@ -132,4 +164,13 @@ void Hanoi::move(int from, int to){
     }
 }
 
-// be stacked by increasing diameter
+/////////////// solver function ///////////////
+// for n disks, the total number of required steps is 2^n - 1
+void solve_hanoi(Hanoi& game){
+    step += 1;
+    if (step != pow(2,game.get_num_of_discs())-1){
+
+
+    }
+
+}
