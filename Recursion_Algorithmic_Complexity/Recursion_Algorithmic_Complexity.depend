@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1666864140 source:d:\codeblocks\projects\recursion_algorithmic_complexity\main.cpp
+	<iostream>
+	<cstdlib>
+	"Recursion&Algorithmic_Complexity.h"
+
+1666878601 d:\codeblocks\projects\recursion_algorithmic_complexity\recursion&algorithmic_complexity.h
+	<iostream>
+	<cstdlib>
+

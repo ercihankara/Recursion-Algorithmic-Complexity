@@ -3,6 +3,8 @@
 
 using namespace std;
 
+// TRY TO MAKE DISCS AS PARENT OF HANOI OR VICE VERSA
+
 /* class to model discs with varying diameters,
    an increase of 2 units is used starting from 1
    (arrangeable, private) */
@@ -16,7 +18,7 @@ class discs
 
     public:
         // the constructor for the class
-        discs(int num);
+        discs(int num = 1);
         // get the disc with the desired diameter
         int get_discs(int indx) const;
         // get the number of disc
@@ -28,12 +30,13 @@ class Hanoi{
         int rod0[20] = {0};
         int rod1[20] = {0};
         int rod2[20] = {0};
+        int num_of_discs;
+        discs Discs;
         // discs Disc(); // ??
 
     public:
         // the constructor for the class to initialize the game
         Hanoi(int num);
-        // reach the rods with the index
         int * get_rods(int rod_index);
         int get_last_nonzero_index(int rod_index);
         void move(int from, int to);
@@ -59,6 +62,7 @@ int discs::get_num_discs() const{
     return num_of_discs;
 }
 
+/////////////// an independent function ///////////////
 // get index of the last nonzero term of an array
 int nonzero_index(int* arr)
 {
@@ -72,8 +76,8 @@ int nonzero_index(int* arr)
 
 /////////////// functions for Hanoi class ///////////////
 // the constructor for Hanoi class ????
-Hanoi::Hanoi(){
-    discs Disc(num);
+Hanoi::Hanoi(int num_of_discs){
+    //???
 }
 
 // return the rod arrays as pointers
