@@ -58,7 +58,7 @@ class Hanoi{
         // the constructor for the class to initialize the game
         Hanoi(int num);
         int * get_rods(int rod_index);
-        int get_last_nonzero_index(int rod_index) const;
+        int get_last_nonzero_index(int rod_index);
         int get_num_of_discs() const;
         void move(int from, int to);
 
@@ -109,7 +109,7 @@ Hanoi::Hanoi(int num_of_discs){
 }
 
 // return the rod arrays as pointers
-int * Hanoi::get_rods(int rod_index){
+int* Hanoi::get_rods(int rod_index){
     if (rod_index == 0)
         return rod0;
     else if (rod_index == 1)
@@ -120,7 +120,7 @@ int * Hanoi::get_rods(int rod_index){
 
 /* get the index of the last disc with nonzero diameter
    for the rod with desired index */
-int Hanoi::get_last_nonzero_index(int rod_index) const{
+int Hanoi::get_last_nonzero_index(int rod_index){
     return nonzero_index(get_rods(rod_index));
 }
 
@@ -166,11 +166,11 @@ void Hanoi::move(int from, int to){
 
 /////////////// solver function ///////////////
 // for n disks, the total number of required steps is 2^n - 1
-void solve_hanoi(Hanoi& game){
+/*void solve_hanoi(Hanoi& game){
     step += 1;
     if (step != pow(2,game.get_num_of_discs())-1){
-
 
     }
 
 }
+*/

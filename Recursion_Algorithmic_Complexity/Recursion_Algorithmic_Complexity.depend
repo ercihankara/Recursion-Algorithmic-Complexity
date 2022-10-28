@@ -1,10 +1,21 @@
 # depslib dependency file v1.0
-1666864140 source:d:\codeblocks\projects\recursion_algorithmic_complexity\main.cpp
+1666968125 source:d:\codeblocks\projects\recursion_algorithmic_complexity\main.cpp
 	<iostream>
 	<cstdlib>
 	"Recursion&Algorithmic_Complexity.h"
+	"print_backwards.h"
+	"nth_prime.h"
 
-1666892814 d:\codeblocks\projects\recursion_algorithmic_complexity\recursion&algorithmic_complexity.h
+1666966552 d:\codeblocks\projects\recursion_algorithmic_complexity\recursion&algorithmic_complexity.h
+	<iostream>
+	<cstdlib>
+	<math.h>
+
+1666967041 d:\codeblocks\projects\recursion_algorithmic_complexity\print_backwards.h
+	<iostream>
+	<cstdlib>
+
+1666968144 d:\codeblocks\projects\recursion_algorithmic_complexity\nth_prime.h
 	<iostream>
 	<cstdlib>
 
