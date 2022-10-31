@@ -34,6 +34,9 @@
 		</Compiler>
 		<Unit filename="Recursion&amp;Algorithmic_Complexity.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="nth_prime.h" />
+		<Unit filename="print_backwards.h" />
+		<Unit filename="stack.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

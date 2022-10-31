@@ -52,9 +52,9 @@ class Hanoi{
         int rod1[20] = {0};
         int rod2[20] = {0};
         int num_discs;
-        disc Discs[];
 
     public:
+        disc Discs[];
         // the constructor for the class to initialize the game
         Hanoi(int num);
         int * get_rods(int rod_index);
@@ -85,7 +85,7 @@ void disc::set_diameter(int diam){
 int nonzero_index(int* arr)
 {
     int arr_size = 20;
-	for(int i = arr_size-1; i>=0 ; i--)
+	for(int i = arr_size-1; i>=0; i--)
 	{
 		if(arr[i] != 0)
 			return i;
@@ -172,5 +172,4 @@ void Hanoi::move(int from, int to){
 
     }
 
-}
-*/
+}*/
