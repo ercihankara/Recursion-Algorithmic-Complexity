@@ -31,6 +31,8 @@ class discs
 };
 */
 
+/////////////// class declarations ///////////////
+
 class disc
 {
     private:
@@ -52,6 +54,7 @@ class Hanoi{
         int rod1[20] = {0};
         int rod2[20] = {0};
         int num_discs;
+        int* last_ptr;  // shows the last element of the rod
 
     public:
         disc Discs[];
@@ -63,6 +66,20 @@ class Hanoi{
         void move(int from, int to);
 
 };
+
+/////////////// an independent function ///////////////
+// get index of the last nonzero term of an array
+int nonzero_index(int* arr)
+{
+    int arr_size = 20;
+	for(int i = arr_size-1; i >= 0; i--)
+	{
+		if(arr[i] != 0)
+			return i;
+        else if(i == 0)
+            return -1;
+	}
+}
 
 /////////////// functions for disc class ///////////////
 // set the discs using diameters, constructor for the class
@@ -80,22 +97,8 @@ void disc::set_diameter(int diam){
     diameter = diam;
 }
 
-/////////////// an independent function ///////////////
-// get index of the last nonzero term of an array
-int nonzero_index(int* arr)
-{
-    int arr_size = 20;
-	for(int i = arr_size-1; i>=0; i--)
-	{
-		if(arr[i] != 0)
-			return i;
-        else
-            return -1;
-	}
-}
-
 /////////////// functions for Hanoi class ///////////////
-// the constructor for Hanoi class
+// the constructor for Hanoi class, starter of the game
 Hanoi::Hanoi(int num_of_discs){
     num_discs = num_of_discs;
     // create the discs with increase of two, store at an array
@@ -104,7 +107,7 @@ Hanoi::Hanoi(int num_of_discs){
         Discs[i] = temp;
         /* accumulate at them at rod0 using diameters
            from small to large */
-        rod0[num_of_discs - i] = Discs[i].get_diameter();
+        rod0[num_of_discs - i - 1] = Discs[i].get_diameter();
     }
 }
 
@@ -134,7 +137,7 @@ void Hanoi::move(int from, int to){
 
     // first check the indeces, then the legality of the movement
     try{
-        if ((from < 3 && to < 3) && (from > 0 && to > 0)){
+        if ((from < 3 && to < 3) && (from >= 0 && to >= 0)){
             if (get_rods(from)[get_last_nonzero_index(from)] > get_rods(to)[get_last_nonzero_index(to)])
                 available = 1;
             else{
@@ -154,12 +157,12 @@ void Hanoi::move(int from, int to){
 
     if (available == 1){
     //  the move part is realized
-        if (get_last_nonzero_index(to)+1 != 20){
+        cout << "Disc " << get_rods(from)[get_last_nonzero_index(from)] << " is moved from Rod " << from << " to Rod " << to << endl;
+        if (get_last_nonzero_index(to) != 19){  // checking whether full or not
             get_rods(to)[get_last_nonzero_index(to)+1] = get_rods(from)[get_last_nonzero_index(from)];
             get_rods(from)[get_last_nonzero_index(from)] = 0;
             /* get_rods(from)[get_last_nonzero_index(from)] gives the diameter of a disc,
                discs are called by their diameter values in my case */
-            cout << "Disc " << get_rods(from)[get_last_nonzero_index(from)] << "is moved from Rod " << from << "to Rod " << to << endl;
         }
     }
 }
