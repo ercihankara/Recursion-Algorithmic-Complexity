@@ -4,7 +4,6 @@
 
 using namespace std;
 int dia_inc = 2;
-int step = 1;
 
 // TRY TO MAKE DISCS AS PARENT OF HANOI OR VICE VERSA
 
@@ -76,7 +75,7 @@ int nonzero_index(int* arr)
 	{
 		if(arr[i] != 0)
 			return i;
-        else if(i == 0)
+        else if (i == 0) // if empty rod
             return -1;
 	}
 }
@@ -132,13 +131,15 @@ int Hanoi::get_num_of_discs() const{
 }
 
 void Hanoi::move(int from, int to){
-    int checkher = 1;
+    int indx, checkher = 1;
     bool available;
 
     // first check the indeces, then the legality of the movement
     try{
         if ((from < 3 && to < 3) && (from >= 0 && to >= 0)){
-            if (get_rods(from)[get_last_nonzero_index(from)] > get_rods(to)[get_last_nonzero_index(to)])
+            if (get_last_nonzero_index(to) == -1)
+                available = 1;
+            else if (get_rods(from)[get_last_nonzero_index(from)] < get_rods(to)[get_last_nonzero_index(to)])
                 available = 1;
             else{
                 available = 0;
@@ -168,11 +169,22 @@ void Hanoi::move(int from, int to){
 }
 
 /////////////// solver function ///////////////
-// for n disks, the total number of required steps is 2^n - 1
-/*void solve_hanoi(Hanoi& game){
-    step += 1;
-    if (step != pow(2,game.get_num_of_discs())-1){
+// for n disks, the total number of required steps is 2^n - 1; not a member function
+int init = 0, aux = 1, fin = 2; // global rod holders
+void solve_hanoi(Hanoi& game){
+    // iteration wise first -> convert to recursive
+    for (int i = 0; i<game.get_num_of_discs(); i++){
+        game.move(init, aux);
+        game.move(init, fin);
+        game.move(aux, fin);
+        game.move(init, aux);
 
+        init = 2;
+        aux = 0;
+        fin = 1;
+
+        init = 1;
+        aux = 2;
+        fin = 0;
     }
-
-}*/
+}
