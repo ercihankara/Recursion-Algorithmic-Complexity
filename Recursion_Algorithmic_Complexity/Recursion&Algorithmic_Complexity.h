@@ -201,8 +201,10 @@ void solve_hanoi(Hanoi& game){
     game.move(game.init, game.fin);
     game.move(game.aux, game.fin);
     if ((cntr > 1 && cntr < 5) || cntr%2 == 0){
-        game.move(game.init, game.aux);
-        cout << "if 1" << endl;
+        if (game.get_rods(game.init)[game.get_last_nonzero_index(game.init)] != 0){
+            game.move(game.init, game.aux);
+            cout << "if 1" << endl;
+        }
     }
     else if (cntr%2 == 1){
         game.move(game.aux, game.init);
@@ -210,14 +212,12 @@ void solve_hanoi(Hanoi& game){
     }
     cout << cntr << endl;
     cntr += 1;
-    cout << cntr << endl;
 
     swap(game.fin, game.aux);
     swap(game.aux, game.init);
 
     if (cntr == 8)  // reset the flow of conditions
         cntr = 0;
-    cout << cntr << endl;
     if (game.get_last_nonzero_index(2) == game.get_num_of_discs() - 1){
         cout << "if 3" << endl;
         return;
