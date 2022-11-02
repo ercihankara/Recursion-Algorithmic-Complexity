@@ -1,0 +1,53 @@
+# depslib dependency file v1.0
+1667429294 source:d:\codeblocks\projects\recursion_algorithmic_complexity\main.cpp
+	<iostream>
+	<cstdlib>
+	"Hanoi.h"
+	"Disc.h"
+	"solve_hanoi.cpp"
+	"print_backwards.h"
+	"nth_prime.h"
+
+1667426813 d:\codeblocks\projects\recursion_algorithmic_complexity\recursion&algorithmic_complexity.h
+	<iostream>
+	<cstdlib>
+	<math.h>
+
+1666967041 d:\codeblocks\projects\recursion_algorithmic_complexity\print_backwards.h
+	<iostream>
+	<cstdlib>
+
+1666968144 d:\codeblocks\projects\recursion_algorithmic_complexity\nth_prime.h
+	<iostream>
+	<cstdlib>
+
+1667429017 source:d:\codeblocks\projects\recursion_algorithmic_complexity\disc.cpp
+	"Disc.h"
+
+1667429027 d:\codeblocks\projects\recursion_algorithmic_complexity\disc.h
+	<iostream>
+	<cstdlib>
+
+1667429059 source:d:\codeblocks\projects\recursion_algorithmic_complexity\solve_hanoi.cpp
+	"Hanoi.h"
+
+1667429023 d:\codeblocks\projects\recursion_algorithmic_complexity\hanoi.h
+	<iostream>
+	<cstdlib>
+	"Disc.h"
+
+1667429457 source:d:\codeblocks\projects\recursion_algorithmic_complexity\hanoi.cpp
+	"Hanoi.h"
+
+1667429100 d:\codeblocks\projects\recursion_algorithmic_complexity\nonzero_index.cpp
+	<iostream>
+	<cstdlib>
+
+1667429380 source:d:\codeblocks\projects\recursion_algorithmic_complexity\nonzero_index.cpp
+	<iostream>
+	<cstdlib>
+	"Hanoi.h"
+
+1667429059 d:\codeblocks\projects\recursion_algorithmic_complexity\solve_hanoi.cpp
+	"Hanoi.h"
+
