@@ -4,6 +4,7 @@
 
 using namespace std;
 int dia_inc = 2;
+int cntr = 0; // global counter for solver
 
 // TRY TO MAKE DISCS AS PARENT OF HANOI OR VICE VERSA
 
@@ -53,20 +54,21 @@ class Hanoi{
         int rod1[20] = {0};
         int rod2[20] = {0};
         int num_discs;
-        int* last_ptr;  // shows the last element of the rod
 
     public:
+        int aux, fin, init = 0;
         disc Discs[];
         // the constructor for the class to initialize the game
         Hanoi(int num);
         int * get_rods(int rod_index);
         int get_last_nonzero_index(int rod_index);
         int get_num_of_discs() const;
+        void set_aux_fin();   // function necessary for solver
         void move(int from, int to);
 
 };
 
-/////////////// an independent function ///////////////
+/////////////// independent functions ///////////////
 // get index of the last nonzero term of an array
 int nonzero_index(int* arr)
 {
@@ -78,6 +80,13 @@ int nonzero_index(int* arr)
         else if (i == 0) // if empty rod
             return -1;
 	}
+}
+// swap values of two integers
+void swap(int& num1, int& num2)
+{
+    int temp = num1;
+    num1 = num2;
+    num2 = temp;
 }
 
 /////////////// functions for disc class ///////////////
@@ -100,6 +109,7 @@ void disc::set_diameter(int diam){
 // the constructor for Hanoi class, starter of the game
 Hanoi::Hanoi(int num_of_discs){
     num_discs = num_of_discs;
+    set_aux_fin(); // set aux and fin
     // create the discs with increase of two, store at an array
     for (int i = 0; i<num_of_discs; i++){
         disc temp(dia_inc*i + 1);
@@ -128,6 +138,19 @@ int Hanoi::get_last_nonzero_index(int rod_index){
 
 int Hanoi::get_num_of_discs() const{
     return num_discs;
+}
+
+// set aux and fin for solver function
+void Hanoi::set_aux_fin(){
+    int num = get_num_of_discs();
+    if (num%2 == 0){
+        aux = 1;
+        fin = 2;
+    }
+    else{
+        aux = 2;
+        fin = 1;
+    }
 }
 
 void Hanoi::move(int from, int to){
@@ -169,22 +192,35 @@ void Hanoi::move(int from, int to){
 }
 
 /////////////// solver function ///////////////
-// for n disks, the total number of required steps is 2^n - 1; not a member function
-int init = 0, aux = 1, fin = 2; // global rod holders
+// for n discs, the total number of required steps is 2^n - 1; not a member function
 void solve_hanoi(Hanoi& game){
     // iteration wise first -> convert to recursive
-    for (int i = 0; i<game.get_num_of_discs(); i++){
-        game.move(init, aux);
-        game.move(init, fin);
-        game.move(aux, fin);
-        game.move(init, aux);
+    // set aux and fin by set_aux_fin function inside constructor
 
-        init = 2;
-        aux = 0;
-        fin = 1;
-
-        init = 1;
-        aux = 2;
-        fin = 0;
+    game.move(game.init, game.aux);
+    game.move(game.init, game.fin);
+    game.move(game.aux, game.fin);
+    if ((cntr > 1 && cntr < 5) || cntr%2 == 0){
+        game.move(game.init, game.aux);
+        cout << "if 1" << endl;
     }
+    else if (cntr%2 == 1){
+        game.move(game.aux, game.init);
+        cout << "if 2" << endl;
+    }
+    cout << cntr << endl;
+    cntr += 1;
+    cout << cntr << endl;
+
+    swap(game.fin, game.aux);
+    swap(game.aux, game.init);
+
+    if (cntr == 8)  // reset the flow of conditions
+        cntr = 0;
+    cout << cntr << endl;
+    if (game.get_last_nonzero_index(2) == game.get_num_of_discs() - 1){
+        cout << "if 3" << endl;
+        return;
+    }
+    solve_hanoi(game);   // now recursion
 }
