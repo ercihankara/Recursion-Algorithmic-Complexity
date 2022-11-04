@@ -3,9 +3,7 @@
 
 int dia_inc = 2; // global parameter for the diameter arrangements
 
-
 // helper function
-
 // get index of the last nonzero term of an array
 int nonzero_index(int* arr)
 {
@@ -23,6 +21,10 @@ int nonzero_index(int* arr)
 Hanoi::Hanoi(int num_of_discs){
     num_discs = num_of_discs;
     set_aux_fin(); // set aux and fin
+    if (num_discs > 20){
+        cout << "not a valid number of discs, check again! " << endl;
+        exit(0);
+    }
     // create the discs with increase of two, store at an array
     for (int i = 0; i<num_of_discs; i++){
         Disc temp(dia_inc*i + 1);

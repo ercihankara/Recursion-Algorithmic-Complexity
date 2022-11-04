@@ -58,11 +58,27 @@
 	<iostream>
 	<cstdlib>
 
-1667429457 source:d:\codeblocks\projects\recursion_algorithmic_complexity_vol\hanoi.cpp
+1667550741 source:d:\codeblocks\projects\recursion_algorithmic_complexity_vol\hanoi.cpp
 	"Hanoi.h"
 
 1667429023 d:\codeblocks\projects\recursion_algorithmic_complexity_vol\hanoi.h
 	<iostream>
 	<cstdlib>
 	"Disc.h"
+
+1667550759 source:d:\codeblocks\projects\recursion_algorithmic_complexity_vol\main.cpp
+	<iostream>
+	<cstdlib>
+	"Hanoi.h"
+	"Disc.h"
+	"print_backwards.h"
+	"nth_prime.h"
+
+1666967041 d:\codeblocks\projects\recursion_algorithmic_complexity_vol\print_backwards.h
+	<iostream>
+	<cstdlib>
+
+1666968144 d:\codeblocks\projects\recursion_algorithmic_complexity_vol\nth_prime.h
+	<iostream>
+	<cstdlib>
 
