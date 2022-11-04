@@ -51,3 +51,18 @@
 1667429059 d:\codeblocks\projects\recursion_algorithmic_complexity\solve_hanoi.cpp
 	"Hanoi.h"
 
+1667429017 source:d:\codeblocks\projects\recursion_algorithmic_complexity_vol\disc.cpp
+	"Disc.h"
+
+1667429027 d:\codeblocks\projects\recursion_algorithmic_complexity_vol\disc.h
+	<iostream>
+	<cstdlib>
+
+1667429457 source:d:\codeblocks\projects\recursion_algorithmic_complexity_vol\hanoi.cpp
+	"Hanoi.h"
+
+1667429023 d:\codeblocks\projects\recursion_algorithmic_complexity_vol\hanoi.h
+	<iostream>
+	<cstdlib>
+	"Disc.h"
+
